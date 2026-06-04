@@ -1,3 +1,4 @@
+package WebMonitor;
 public class EmailNotifier implements Notifier {
     private String server;
 

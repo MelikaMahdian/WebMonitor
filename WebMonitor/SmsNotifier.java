@@ -1,3 +1,4 @@
+package WebMonitor;
 public class SmsNotifier implements Notifier {
     private String phoneNumber;
 

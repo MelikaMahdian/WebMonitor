@@ -1,3 +1,4 @@
+package WebMonitor;
 import java.time.LocalDateTime;
 
 public class Website {

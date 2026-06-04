@@ -1,3 +1,4 @@
+package WebMonitor;
 public class Subscription {
     private String subscriptionId;
     private String status;
