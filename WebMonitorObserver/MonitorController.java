@@ -1,4 +1,4 @@
-package WebMonitor;
+package WebMonitorObserver;
 
 public class MonitorController {
     private MonitorService monitorService;
