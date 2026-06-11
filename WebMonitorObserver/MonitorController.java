@@ -1,6 +1,7 @@
 package WebMonitorObserver;
 
 public class MonitorController {
+
     private MonitorService monitorService;
 
     public MonitorController(MonitorService monitorService) {
@@ -11,8 +12,8 @@ public class MonitorController {
         System.out.println("Registrierung wird bearbeitet.");
     }
 
-    public void triggerSubscription() {
-        monitorService.scheduleCheck();
+    public void triggerSubscription(String newContent) {
+        monitorService.scheduleCheck(newContent);
     }
 
     public void handleModifyCancel() {

@@ -10,8 +10,8 @@ public class MonitorService {
         this.subscription = subscription;
     }
 
-    public void scheduleCheck() {
+    public void scheduleCheck(String newContent) {
         System.out.println("Prüfung geplant. Frequenz: " + subscription.getFrequency());
-        website.checksForUpdates();
+        website.checksForUpdates(newContent);
     }
 }

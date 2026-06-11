@@ -7,12 +7,21 @@ import java.util.List;
 public class Website implements Observable {
 
     private String url;
+    private String content;
     private LocalDateTime lastChecked;
     private List<WebsiteObserver> observers = new ArrayList<>();
+    private ComparisonStrategy strategy;
 
-    public Website(String url) {
+    public Website(String url, String initialContent, ComparisonStrategy strategy) {
         this.url = url;
+        this.content = initialContent;
+        this.strategy = strategy;
         this.lastChecked = LocalDateTime.now();
+    }
+
+    public void setStrategy(ComparisonStrategy strategy) {
+        this.strategy = strategy;
+        System.out.println("Strategie gewechselt: " + strategy.getClass().getSimpleName());
     }
 
     @Override
@@ -34,15 +43,18 @@ public class Website implements Observable {
         }
     }
 
-    public void checksForUpdates() {
-        System.out.println("Prüfe Website: " + url);
+    public void checksForUpdates(String newContent) {
+        System.out.println("Prüfe Website: " + url
+                + " [Strategie: " + strategy.getClass().getSimpleName() + "]");
         this.lastChecked = LocalDateTime.now();
-        detectChange("Inhalt wurde geändert.");
-    }
 
-    private void detectChange(String description) {
-        System.out.println("Änderung erkannt: " + description);
-        notifyObservers(description);
+        if (strategy.hasChanged(this.content, newContent)) {
+            System.out.println("Änderung erkannt!");
+            this.content = newContent;
+            notifyObservers("Inhalt wurde geändert.");
+        } else {
+            System.out.println("Keine Änderung festgestellt.");
+        }
     }
 
     public String getUrl() {
